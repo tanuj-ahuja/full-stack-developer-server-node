@@ -4,7 +4,7 @@ const createTuit = async (req, res) => {
     const newTuit = req.body;
 
     newTuit.likes = 0;
-    newTuit.dislikes = 0;
+    newTuit.liked = false;
     const insertedTuit = await tuitsDao
         .createTuit(newTuit);
     res.json(insertedTuit);
@@ -22,7 +22,7 @@ const updateTuit = async (req, res) => {
     const status = await tuitsDao
         .updateTuit(tuitdIdToUpdate,
             updates);
-    res.sendStatus(status);
+    res.json(status);
 }
 
 const deleteTuit = async (req, res) => {
